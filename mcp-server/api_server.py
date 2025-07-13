@@ -1,13 +1,13 @@
 import contextlib
 from fastapi import FastAPI
-from main import mcp as mcp_server
+from main import mcp as logtime
 
 import os
 
 @contextlib.asynccontextmanager
 async def lifespan(app: FastAPI):
     async with contextlib.AsyncExitStack() as stack:
-        await stack.enter_async_context(mcp_server.session_manager.run())
+        await stack.enter_async_context(logtime.session_manager.run())
         yield
 
 
